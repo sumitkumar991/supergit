@@ -1,6 +1,7 @@
 (ns gitcloj.helper
   (require [clojure.string :as cstr]
-           [clojure.java.io :as io]))
+           [clojure.java.io :as io]
+           [clojure.set]))
 ;Contains helper methods required in project
 (defn read-files-recursively
   "Helper method of read-relative-paths to get absolute paths of all files from parent directory"
@@ -25,3 +26,11 @@
   [parent prev curr]
   (let [test (.contentEquals (slurp (io/file (str parent prev))) (slurp (io/file (str parent curr))))]
     test))
+
+(defn get-untracked-files
+  [parent root]
+  (let [currfiles (apply hash-set (read-relative-paths parent))
+        prevfiles (read-string (slurp (str parent root "index")))
+        headfiles (gitcloj.reader/get-head-files parent root)
+        ]
+    (clojure.set/difference currfiles prevfiles headfiles)))
