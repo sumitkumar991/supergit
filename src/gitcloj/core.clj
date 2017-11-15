@@ -5,8 +5,8 @@
            [gitcloj.reader :as rd]
            [gitcloj.helper :as hp]))
 
-(def root ".clogit/")
-(def headfile ".clogit/Head")
+(def ^:const root ".clogit/")
+(def ^:const headfile (str root "Head"))
 (defn create-directories
   [parent]
   (do
@@ -14,7 +14,8 @@
       (io/make-parents (str par "branches/nil"))
       (io/make-parents (str par "refs/nil"))
       (io/make-parents (str par "refs/heads/nil"))
-      (spit (str par "Head") {:current
+      (spit (str par "index") "#{}")                           ;index for versioned files
+      (spit (str par "Head") {:current                      ;contains staged files
                               {
                                :name "master"
                                :files #{}
@@ -22,6 +23,7 @@
       (spit (str par "branches/Index")
             {"master" #{}})
       (io/make-parents (str par "branches/master/nil")))))
+
 (defn init
   "Checks if current directory is under version control & creates new if not"
   [parent]
@@ -31,7 +33,7 @@
 
 (defn add
   [parent-dir fpath]
-  (let [head (rd/get-head parent-dir) fls (get-in head [:current :files])]
+  (let [head (rd/get-head parent-dir root) fls (get-in head [:current :files])]
     ;(println head fpath)
     (if (= "." fpath)
       (let [fileset  (apply hash-set (hp/read-relative-paths parent-dir))]
@@ -44,9 +46,20 @@
 
 (defn status
   [parent]
-  (let [head (rd/get-head parent) files (get-in head [:current :files])]
+  (let [head (rd/get-head parent root) files (get-in head [:current :files])]
     (println "Current branch: " (get-in head [:current :name]))
-    (println "Head:" files)))
+    (println "Changes to be committed:" files)
+    (println "Changes not staged for commit")
+    )
+  (let [untracked (hp/get-untracked-files parent root)]
+    (when (not-empty untracked)
+      (println "Untracked files: ")
+      (loop [[i & res] (seq untracked)]
+        (when i
+          (println "      " i)
+          (recur res)))
+      ))
+  )
 
 (defn -main
   "I don't do a whole lot ... yet."
