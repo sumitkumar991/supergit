@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd9685f3-63d7-41ae-b7b8-f324af3867e8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gitcloj/core.clj" afterPath="$PROJECT_DIR$/src/gitcloj/core.clj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gitcloj/helper.clj" afterPath="$PROJECT_DIR$/src/gitcloj/helper.clj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gitcloj/reader.clj" afterPath="$PROJECT_DIR$/src/gitcloj/reader.clj" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,8 +26,8 @@
       <file leaf-file-name="core.clj" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gitcloj/core.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="61" column="6" lean-forward="false" selection-start-line="61" selection-start-column="6" selection-end-line="61" selection-end-column="6" />
+            <state relative-caret-position="443">
+              <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -36,46 +36,19 @@
       <file leaf-file-name="reader.clj" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gitcloj/reader.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+            <state relative-caret-position="150">
+              <caret line="10" column="56" lean-forward="false" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="File.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/Downloads/jdk1.8.0_121/src.zip!/java/io/File.java">
+      <file leaf-file-name="helper.clj" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gitcloj/helper.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="810" column="19" lean-forward="false" selection-start-line="810" selection-start-column="19" selection-end-line="810" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#95358#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#8262#8263#0" expanded="false" />
-                <element signature="e#8297#8298#0" expanded="false" />
-                <element signature="e#21135#21136#0" expanded="false" />
-                <element signature="e#21162#21163#0" expanded="false" />
-                <element signature="e#21752#21753#0" expanded="false" />
-                <element signature="e#21794#21795#0" expanded="false" />
-                <element signature="e#23018#23019#0" expanded="false" />
-                <element signature="e#23057#23058#0" expanded="false" />
-                <element signature="e#64751#64752#0" expanded="false" />
-                <element signature="e#64801#64802#0" expanded="false" />
-                <element signature="e#68391#68392#0" expanded="false" />
-                <element signature="e#68441#68442#0" expanded="false" />
-                <element signature="e#72099#72100#0" expanded="false" />
-                <element signature="e#72153#72154#0" expanded="false" />
-                <element signature="e#75713#75714#0" expanded="false" />
-                <element signature="e#75750#75751#0" expanded="false" />
-                <element signature="e#80745#80746#0" expanded="false" />
-                <element signature="e#80782#80783#0" expanded="false" />
-                <element signature="e#89537#89538#0" expanded="false" />
-                <element signature="e#89586#89587#0" expanded="false" />
-                <element signature="e#91257#91258#0" expanded="false" />
-                <element signature="e#91297#91298#0" expanded="false" />
-                <element signature="e#91558#91559#0" expanded="false" />
-                <element signature="e#91590#91591#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="135">
+              <caret line="9" column="26" lean-forward="true" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -83,8 +56,18 @@
       <file leaf-file-name="core.clj" pinned="false" current-in-tab="false">
         <entry file="jar://$MAVEN_REPOSITORY$/org/clojure/clojure/1.8.0/clojure-1.8.0.jar!/clojure/core.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="674">
-              <caret line="6667" column="6" lean-forward="false" selection-start-line="6667" selection-start-column="6" selection-end-line="6667" selection-end-column="6" />
+            <state relative-caret-position="79875">
+              <caret line="5325" column="6" lean-forward="false" selection-start-line="5325" selection-start-column="6" selection-end-line="5325" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="set.clj" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/clojure/clojure/1.8.0/clojure-1.8.0.jar!/clojure/set.clj">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="705">
+              <caret line="47" column="6" lean-forward="false" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -103,6 +86,7 @@
     <findStrings>
       <find>write</find>
       <find>directory</find>
+      <find>get-head</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -111,16 +95,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/gitcloj/core.clj" />
         <option value="$PROJECT_DIR$/src/gitcloj/reader.clj" />
+        <option value="$PROJECT_DIR$/src/gitcloj/core.clj" />
+        <option value="$PROJECT_DIR$/src/gitcloj/helper.clj" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="55" />
-    <option name="y" value="24" />
+    <option name="y" value="-4" />
     <option name="width" value="1311" />
-    <option name="height" value="744" />
+    <option name="height" value="772" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -139,6 +124,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -172,7 +158,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -180,7 +165,18 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
     <property name="cursive.last.file.extension./home/sumit/Documents/gitcloj/src" value="clj" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Clojure Application.core">
+    <configuration default="false" name="core" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
+      <module name="gitcloj" />
+      <setting name="path" value="$PROJECT_DIR$/src/gitcloj/core.clj" />
+      <setting name="namespace" value="" />
+      <setting name="useLein" value="false" />
+      <setting name="profiles" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="$PROJECT_DIR$/src/gitcloj" />
+      <method />
+    </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -321,6 +317,14 @@
       <envs />
       <method />
     </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Clojure Application.core" />
+    </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Clojure Application.core" />
+      </list>
+    </recent_temporary>
     <configuration name="&lt;template&gt;" type="JUnit" default="true" selected="false">
       <option name="MAIN_CLASS_NAME" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -382,7 +386,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="55" y="24" width="1311" height="744" extended-state="6" />
+    <frame x="55" y="-4" width="1311" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -391,24 +395,24 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="REPL" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.4972332" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Leiningen" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32817337" sideWeight="0.49407116" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3142415" sideWeight="0.49407116" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2577075" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27114624" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -443,6 +447,126 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/gitcloj/core.clj">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="975">
+          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gitcloj/reader.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="56" lean-forward="false" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gitcloj/helper.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/clojure/clojure/1.8.0/clojure-1.8.0.jar!/clojure/core.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79875">
+          <caret line="5325" column="6" lean-forward="false" selection-start-line="5325" selection-start-column="6" selection-end-line="5325" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/clojure/clojure/1.8.0/clojure-1.8.0.jar!/clojure/set.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="47" column="6" lean-forward="false" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gitcloj/core.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="975">
+          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gitcloj/reader.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="56" lean-forward="false" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gitcloj/helper.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/clojure/clojure/1.8.0/clojure-1.8.0.jar!/clojure/core.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79875">
+          <caret line="5325" column="6" lean-forward="false" selection-start-line="5325" selection-start-column="6" selection-end-line="5325" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/clojure/clojure/1.8.0/clojure-1.8.0.jar!/clojure/set.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="47" column="6" lean-forward="false" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gitcloj/core.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="975">
+          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gitcloj/reader.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="56" lean-forward="true" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gitcloj/helper.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/clojure/clojure/1.8.0/clojure-1.8.0.jar!/clojure/core.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79875">
+          <caret line="5325" column="6" lean-forward="false" selection-start-line="5325" selection-start-column="6" selection-end-line="5325" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/clojure/clojure/1.8.0/clojure-1.8.0.jar!/clojure/set.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="47" column="6" lean-forward="false" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gitcloj/core.clj">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
@@ -461,34 +585,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="14580">
           <caret line="810" column="19" lean-forward="false" selection-start-line="810" selection-start-column="19" selection-end-line="810" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#95358#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#8262#8263#0" expanded="false" />
-            <element signature="e#8297#8298#0" expanded="false" />
-            <element signature="e#21135#21136#0" expanded="false" />
-            <element signature="e#21162#21163#0" expanded="false" />
-            <element signature="e#21752#21753#0" expanded="false" />
-            <element signature="e#21794#21795#0" expanded="false" />
-            <element signature="e#23018#23019#0" expanded="false" />
-            <element signature="e#23057#23058#0" expanded="false" />
-            <element signature="e#64751#64752#0" expanded="false" />
-            <element signature="e#64801#64802#0" expanded="false" />
-            <element signature="e#68391#68392#0" expanded="false" />
-            <element signature="e#68441#68442#0" expanded="false" />
-            <element signature="e#72099#72100#0" expanded="false" />
-            <element signature="e#72153#72154#0" expanded="false" />
-            <element signature="e#75713#75714#0" expanded="false" />
-            <element signature="e#75750#75751#0" expanded="false" />
-            <element signature="e#80745#80746#0" expanded="false" />
-            <element signature="e#80782#80783#0" expanded="false" />
-            <element signature="e#89537#89538#0" expanded="false" />
-            <element signature="e#89586#89587#0" expanded="false" />
-            <element signature="e#91257#91258#0" expanded="false" />
-            <element signature="e#91297#91298#0" expanded="false" />
-            <element signature="e#91558#91559#0" expanded="false" />
-            <element signature="e#91590#91591#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -512,34 +608,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18018">
           <caret line="1001" column="35" lean-forward="false" selection-start-line="1001" selection-start-column="30" selection-end-line="1001" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#95358#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#8262#8263#0" expanded="false" />
-            <element signature="e#8297#8298#0" expanded="false" />
-            <element signature="e#21135#21136#0" expanded="false" />
-            <element signature="e#21162#21163#0" expanded="false" />
-            <element signature="e#21752#21753#0" expanded="false" />
-            <element signature="e#21794#21795#0" expanded="false" />
-            <element signature="e#23018#23019#0" expanded="false" />
-            <element signature="e#23057#23058#0" expanded="false" />
-            <element signature="e#64751#64752#0" expanded="false" />
-            <element signature="e#64801#64802#0" expanded="false" />
-            <element signature="e#68391#68392#0" expanded="false" />
-            <element signature="e#68441#68442#0" expanded="false" />
-            <element signature="e#72099#72100#0" expanded="false" />
-            <element signature="e#72153#72154#0" expanded="false" />
-            <element signature="e#75713#75714#0" expanded="false" />
-            <element signature="e#75750#75751#0" expanded="false" />
-            <element signature="e#80745#80746#0" expanded="false" />
-            <element signature="e#80782#80783#0" expanded="false" />
-            <element signature="e#89537#89538#0" expanded="false" />
-            <element signature="e#89586#89587#0" expanded="false" />
-            <element signature="e#91257#91258#0" expanded="false" />
-            <element signature="e#91297#91298#0" expanded="false" />
-            <element signature="e#91558#91559#0" expanded="false" />
-            <element signature="e#91590#91591#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -551,69 +619,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/Downloads/jdk1.8.0_121/src.zip!/java/io/File.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="810" column="19" lean-forward="false" selection-start-line="810" selection-start-column="19" selection-end-line="810" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#95358#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#8262#8263#0" expanded="false" />
-            <element signature="e#8297#8298#0" expanded="false" />
-            <element signature="e#21135#21136#0" expanded="false" />
-            <element signature="e#21162#21163#0" expanded="false" />
-            <element signature="e#21752#21753#0" expanded="false" />
-            <element signature="e#21794#21795#0" expanded="false" />
-            <element signature="e#23018#23019#0" expanded="false" />
-            <element signature="e#23057#23058#0" expanded="false" />
-            <element signature="e#64751#64752#0" expanded="false" />
-            <element signature="e#64801#64802#0" expanded="false" />
-            <element signature="e#68391#68392#0" expanded="false" />
-            <element signature="e#68441#68442#0" expanded="false" />
-            <element signature="e#72099#72100#0" expanded="false" />
-            <element signature="e#72153#72154#0" expanded="false" />
-            <element signature="e#75713#75714#0" expanded="false" />
-            <element signature="e#75750#75751#0" expanded="false" />
-            <element signature="e#80745#80746#0" expanded="false" />
-            <element signature="e#80782#80783#0" expanded="false" />
-            <element signature="e#89537#89538#0" expanded="false" />
-            <element signature="e#89586#89587#0" expanded="false" />
-            <element signature="e#91257#91258#0" expanded="false" />
-            <element signature="e#91297#91298#0" expanded="false" />
-            <element signature="e#91558#91559#0" expanded="false" />
-            <element signature="e#91590#91591#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Downloads/jdk1.8.0_121/src.zip!/java/io/Writer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="155" column="16" lean-forward="false" selection-start-line="155" selection-start-column="16" selection-end-line="155" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/jdk1.8.0_121/src.zip!/java/io/File.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="810" column="19" lean-forward="false" selection-start-line="810" selection-start-column="19" selection-end-line="810" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/clojure/clojure/1.8.0/clojure-1.8.0.jar!/clojure/set.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="47" column="6" lean-forward="false" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/clojure/clojure/1.8.0/clojure-1.8.0.jar!/clojure/core.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="674">
-          <caret line="6667" column="6" lean-forward="false" selection-start-line="6667" selection-start-column="6" selection-end-line="6667" selection-end-column="6" />
+        <state relative-caret-position="79875">
+          <caret line="5325" column="6" lean-forward="false" selection-start-line="5325" selection-start-column="6" selection-end-line="5325" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gitcloj/helper.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="26" lean-forward="true" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gitcloj/reader.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        <state relative-caret-position="150">
+          <caret line="10" column="56" lean-forward="false" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gitcloj/core.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="61" column="6" lean-forward="false" selection-start-line="61" selection-start-column="6" selection-end-line="61" selection-end-column="6" />
+        <state relative-caret-position="443">
+          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
           <folding />
         </state>
       </provider>

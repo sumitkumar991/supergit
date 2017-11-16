@@ -34,3 +34,6 @@
         headfiles (gitcloj.reader/get-head-files parent root)
         ]
     (clojure.set/difference currfiles prevfiles headfiles)))
+
+(defn copy-file [source-path dest-path]
+  (io/copy (io/file source-path) (io/file dest-path)))
