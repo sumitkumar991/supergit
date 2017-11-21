@@ -19,11 +19,7 @@
       (io/make-parents (str par "logs/master"))
       (io/make-parents (str par "objects/nil"))
       (spit (str par "index") "{}")                           ;index for versioned files
-      (spit (str par "Head") {:current                      ;contains staged files
-                              {
-                               :name "master"
-                               :path (str root "branches/master/")
-                               :files #{}}})
+      (spit (str par "Head") {:ref "refs/heads/master"})
 
       (spit (str par "branches/Index")
             {"master" {}})
@@ -57,15 +53,21 @@
           dirpath (str parent-dir root "objects/" dirname "/")]
       (io/make-parents (str dirpath "nil"))
       (spit (str dirpath filename) fcontent)
-      (spit (str parent-dir root "index") (merge index {(hp/get-relative-path parent-dir fpath) filename})))))
+      (let [stage_ob {(hp/get-relative-path parent-dir fpath) (hp/stage-file-ob 100644 filename)}]
+        (spit (str parent-dir root "index")
+              (update index :staged merge stage_ob)))
+      )))
 
 (defn add
   [parent-dir fpath]
   (let [index (rd/get-index parent-dir root)]
     (cond
-      (not= fpath ".") (add-helper parent-dir fpath)
-      :else (doseq [file (hp/read-files-recursively parent-dir)]
-              (add-helper parent-dir file)))))
+      (not= fpath ".") (if (.isDirectory (io/file (str parent-dir fpath)))
+                         (doseq [filepath (hp/read-files-recursively (str parent-dir fpath))]
+                           (add-helper parent-dir filepath))
+                         (add-helper parent-dir (str parent-dir fpath)))
+      :else (doseq [filepath (hp/read-files-recursively parent-dir)]
+              (add-helper parent-dir filepath)))))
 
 (defn status
   [parent]
@@ -110,4 +112,5 @@
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
+  (add "/home/sumit/Documents/Untitled Folder/gitworks/" ".")
   (println "Hello, World!"))

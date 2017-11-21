@@ -1,7 +1,8 @@
 (ns gitcloj.helper
   (require [clojure.string :as cstr]
            [clojure.java.io :as io]
-           [clojure.set]))
+           [clojure.set]
+           [gitcloj.reader :as rd]))
 ;Contains helper methods required in project
 (defn read-files-recursively
   "Helper method of read-relative-paths to get absolute paths of all files from parent directory"
@@ -75,7 +76,27 @@
         ]
     [(subs filehash 0 2) (subs filehash 2) compressed]))
 
+(defn stage-file-ob
+  "Staging file format before commit is made"
+  [mode fhash]
+  {:mode mode :hash fhash})
 
+(defn blob-object
+  [perm fhash name]
+  {})
 
+(defn commit-object
+  [childhash author committer comment]
+  {
+   :tree childhash
+   :author author
+   :committer committer
+   :comment comment})
 
-
+(defn generate-snapshot
+  "Merges the latest snapshot with staged files & returns their sha1 hash"
+  [parent-dir root]
+  (let [index (rd/get-index parent-dir root)]
+    (-> (merge (:snapshot index) (:staged index))
+        str
+        sha1-str)))
