@@ -34,13 +34,7 @@
     test))
 
 (defn get-untracked-files
-  [parent root]
-  (let [currfiles (apply hash-set (read-relative-paths parent))
-        prevfiles (read-string (slurp (str parent root "index")))
-        headfiles (gitcloj.reader/get-head-files parent root)]
-
-    (clojure.set/difference currfiles prevfiles headfiles)))
-
+  [parent root])
 (defn copy-file [source-path dest-path]
   (io/copy (io/file source-path) (io/file dest-path)))
 
@@ -65,7 +59,7 @@
 (defn compress
   "Compresses the file contents in using zlib compression"
   [content]
-  content)
+  (str content))
 
 (defn hash-file
   "Returns the 40 char long sha1 key of hashed contents of file [first2 last38]"
@@ -81,11 +75,47 @@
   [mode fhash]
   {:mode mode :hash fhash})
 
+;(defn create-object
+;  [parent-dir root dirc hashname content]
+;  (let [path (str parent-dir root "objects/" dirc "/")]
+;    (io/make-parents (str path "/nil"))
+;    (spit (str path hashname) content)
+;    hashname))
+(defn dir
+  "splits checksum to [dir name]"
+  [s]
+  [(subs s 0 2) (subs s 2)])
+
+(defn create-object
+  [parent-dir root uncompressed]
+  (let [compressed (compress uncompressed)
+        [dr hashname] (dir (sha1-str compressed))]
+    (let [path (str parent-dir root "objects/" dr "/")]
+      (io/make-parents (str path "/nil"))
+      (spit (str path hashname) compressed)
+      hashname)))
+
+(defn gen-snapshot-checksum
+  "Merges the latest snapshot with staged files & returns their sha1 hash"
+  [parent-dir root]
+  (let [index (rd/get-index parent-dir root)]
+    (let [checksum (-> (rd/get-updated-snapshot parent-dir root)
+                       str
+                       sha1-str)
+          ]
+      [(subs checksum 0 2) (subs checksum 2)])))
+
+(defn save-snapshot
+  "Saves the current state of working copy & returns the hashname of saved file"
+  [parent-dir root]
+  (let [snapmap (rd/get-updated-snapshot parent-dir root)]
+    (create-object parent-dir root snapmap)))
+
 (defn blob-object
   [perm fhash name]
   {})
 
-(defn commit-object
+(defn commit-tree-object
   [childhash author committer comment]
   {
    :tree childhash
@@ -93,10 +123,5 @@
    :committer committer
    :comment comment})
 
-(defn generate-snapshot
-  "Merges the latest snapshot with staged files & returns their sha1 hash"
-  [parent-dir root]
-  (let [index (rd/get-index parent-dir root)]
-    (-> (merge (:snapshot index) (:staged index))
-        str
-        sha1-str)))
+;use when dirname & hash are required
+(def drcompress (comp dir sha1-str compress))

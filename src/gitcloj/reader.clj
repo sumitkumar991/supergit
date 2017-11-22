@@ -13,10 +13,10 @@
   [parent root]
   (read-string (get-file-content (str parent root "Head"))))
 
-(defn get-head-files
-  "returns the set of staged files"
+(defn get-head-ref
+  "Returns the currently referenced branch"
   [parent-dir root]
-  (get-in (get-head parent-dir root) [:current :files]))
+  (get (get-head parent-dir root) :ref))
 
 (defn get-current-branch
   "Returns name of current branch"
@@ -32,4 +32,22 @@
   "Returns the content of index file"
   [parent-dir root]
   (read-string (get-file-content (str parent-dir root "index"))))
+
+(defn get-curr-snapshot
+  "Returns current state of working directory"
+  [parent-dir root]
+  (let [data (read-string (get-file-content (str parent-dir root "index")))]
+    (:snapshot data)))
+
+(defn get-staged
+  "Returns files staged for commit"
+  [parent-dir root]
+  (let [data (read-string (get-file-content (str parent-dir root "index")))]
+    (:snapshot data)))
+
+(defn get-updated-snapshot
+  "Returns snapshot after merging with staged files"
+  [parent-dir root]
+  (let [data (read-string (get-file-content (str parent-dir root "index")))]
+    (merge (:snapshot data) (:staged data))))
 
