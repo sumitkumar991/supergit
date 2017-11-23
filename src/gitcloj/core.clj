@@ -3,7 +3,8 @@
   (require [clojure.string :as cstr]
            [clojure.java.io :as io]
            [gitcloj.reader :as rd]
-           [gitcloj.helper :as hp]))
+           [gitcloj.helper :as hp]
+           [gitcloj.objects :as obj]))
 
 (def ^:const root ".clogit/")
 (def ^:const headfile (str root "Head"))
@@ -62,19 +63,23 @@
 (defn commit
   "Commit the updated snapshot & save hash at current branch"
   [parent-dir comment]
-  (let [snaphash (hp/save-snapshot parent-dir root)]
-    (let [committree (hp/commit-tree-object snaphash "John" "Doe" comment)
-          treehash (hp/create-object parent-dir root committree)]
-      ;treehash is the hash of actual commit
-      (spit
-        (str parent-dir root (rd/get-head-ref parent-dir root))
-        treehash)
-      treehash)))
+  ;(let [snaphash (hp/save-snapshot parent-dir root)]
+  ;  (let [committree (hp/commit-tree-object snaphash "John" "Doe" comment)
+  ;        treehash (obj/create-object parent-dir root committree)]
+  ;    ;treehash is the hash of actual commit
+  ;    (spit
+  ;      (str parent-dir root (rd/get-head-ref parent-dir root))
+  ;      treehash)
+  ;    treehash))
+  )
 
 
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
-  (add "/home/sumit/Documents/Untitled Folder/gitworks/" ".")
-  (println (commit "/home/sumit/Documents/Untitled Folder/gitworks/" "jlfnal"))
+  ;(add "/home/sumit/Documents/Untitled Folder/path/to/" ".")
+  ;(println (commit "/home/sumit/Documents/Untitled Folder/gitworks/" "jlfnal"))
+  ;(obj/hash-dir "/home/sumit/Documents/Untitled Folder/path/to/" root "/home/sumit/Documents/Untitled Folder/path/to")
+  (obj/write-file-tree "/home/sumit/Documents/Untitled Folder/path/to/" root "/home/sumit/Documents/Untitled Folder/path/to/" "e77bc84dfb2f49f0027b88f2ed4a710813b70dc0")
+
   (println "Hello, World!"))

@@ -2,7 +2,8 @@
   (require [clojure.string :as cstr]
            [clojure.java.io :as io]
            [clojure.set]
-           [gitcloj.reader :as rd]))
+           [gitcloj.reader :as rd]
+           [clojure.pprint]))
 ;Contains helper methods required in project
 (defn read-files-recursively
   "Helper method of read-relative-paths to get absolute paths of all files from parent directory"
@@ -61,6 +62,11 @@
   [content]
   (str content))
 
+(defn decompress
+  "Decompresses a compressed file"
+  [compressed]
+  (str compressed))
+
 (defn hash-file
   "Returns the 40 char long sha1 key of hashed contents of file [first2 last38]"
   [filepath]
@@ -75,25 +81,10 @@
   [mode fhash]
   {:mode mode :hash fhash})
 
-;(defn create-object
-;  [parent-dir root dirc hashname content]
-;  (let [path (str parent-dir root "objects/" dirc "/")]
-;    (io/make-parents (str path "/nil"))
-;    (spit (str path hashname) content)
-;    hashname))
 (defn dir
   "splits checksum to [dir name]"
   [s]
   [(subs s 0 2) (subs s 2)])
-
-(defn create-object
-  [parent-dir root uncompressed]
-  (let [compressed (compress uncompressed)
-        [dr hashname] (dir (sha1-str compressed))]
-    (let [path (str parent-dir root "objects/" dr "/")]
-      (io/make-parents (str path "/nil"))
-      (spit (str path hashname) compressed)
-      hashname)))
 
 (defn gen-snapshot-checksum
   "Merges the latest snapshot with staged files & returns their sha1 hash"
@@ -105,20 +96,44 @@
           ]
       [(subs checksum 0 2) (subs checksum 2)])))
 
+(defn blob-object
+  [mode fhash name]
+  (str mode " " "blob" " " fhash " " name))
+
+(defn is-dir
+  [path]
+  (.isDirectory (io/file path)))
+
+(defn empty-dir?
+  [dir]
+  (let [file (io/file dir)]
+    (->
+      file
+      .list
+      empty?)))
+
+;snapshot save in format
+; for directory
+;040000 tree 0eed1217a2947f4930583229987d90fe5e8e0b74 data
+; for blobs
+;100664 blob 2e65efe2a145dda7ee51d1741299f848e5bf752e letter.txt
+;100664 blob 56a6051ca2b02b04ef92d5150c9ef600403cb1de number.txt
+
 (defn save-snapshot
   "Saves the current state of working copy & returns the hashname of saved file"
   [parent-dir root]
-  (let [snapmap (rd/get-updated-snapshot parent-dir root)]
-    (create-object parent-dir root snapmap)))
-
-(defn blob-object
-  [perm fhash name]
-  {})
+  ;(let [snapmap (rd/get-updated-snapshot parent-dir root)]
+  ;  ;(clojure.pprint/pprint snapmap)
+  ;  (let [kys (keys snapmap)]
+  ;    )
+  ;  ;(create-object parent-dir root snapmap)
+  ;  )
+  )
 
 (defn commit-tree-object
-  [childhash author committer comment]
+  [parenthash treehash author committer comment]
   {
-   :tree childhash
+   :tree treehash
    :author author
    :committer committer
    :comment comment})
