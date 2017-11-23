@@ -1,9 +1,6 @@
 (ns gitcloj.helper
   (require [clojure.string :as cstr]
-           [clojure.java.io :as io]
-           [clojure.set]
-           [gitcloj.reader :as rd]
-           [clojure.pprint]))
+           [clojure.java.io :as io]))
 ;Contains helper methods required in project
 (defn read-files-recursively
   "Helper method of read-relative-paths to get absolute paths of all files from parent directory"
@@ -86,15 +83,15 @@
   [s]
   [(subs s 0 2) (subs s 2)])
 
-(defn gen-snapshot-checksum
-  "Merges the latest snapshot with staged files & returns their sha1 hash"
-  [parent-dir root]
-  (let [index (rd/get-index parent-dir root)]
-    (let [checksum (-> (rd/get-updated-snapshot parent-dir root)
-                       str
-                       sha1-str)
-          ]
-      [(subs checksum 0 2) (subs checksum 2)])))
+;(defn gen-snapshot-checksum
+;  "Merges the latest snapshot with staged files & returns their sha1 hash"
+;  [parent-dir root]
+;  (let [index (rd/get-index parent-dir root)]
+;    (let [checksum (-> (rd/get-updated-snapshot parent-dir root)
+;                       str
+;                       sha1-str)
+;          ]
+;      [(subs checksum 0 2) (subs checksum 2)])))
 
 (defn blob-object
   [mode fhash name]
@@ -129,14 +126,6 @@
   ;  ;(create-object parent-dir root snapmap)
   ;  )
   )
-
-(defn commit-tree-object
-  [parenthash treehash author committer comment]
-  {
-   :tree treehash
-   :author author
-   :committer committer
-   :comment comment})
 
 ;use when dirname & hash are required
 (def drcompress (comp dir sha1-str compress))

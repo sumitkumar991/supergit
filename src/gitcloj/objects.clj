@@ -1,7 +1,10 @@
 (ns gitcloj.objects
   (:require [clojure.java.io :as io]
             [gitcloj.helper :as hp]
-            [clojure.string :as cstr]))
+            [clojure.string :as cstr]
+            [clj-time.core :as tm]
+            [clj-time.coerce :as tc]
+            [clj-time.core :as time]))
 (def obj-dir "objects/")
 ; for directory
 ;040000 tree 0eed1217a2947f4930583229987d90fe5e8e0b74 data
@@ -16,7 +19,7 @@
     (let [path (str parent-dir root "objects/" dr "/")]
       (io/make-parents (str path "/nil"))
       (spit (str path hashname) compressed)
-      hashname)))
+      (str dr hashname))))
 
 (defn hash-dir
   [parent-dir root dirpath]
@@ -78,3 +81,35 @@
       (doseq [blob blobs]
         (spit (str curr-dir (nth blob 3)) (cat-file parent-dir root (nth blob 2)))))
     ))
+
+(defn make-commit-obj
+  [parent-dir root parenthash treehash author committer timestamp message]
+  (if (nil? parenthash)
+    (let [comstr (str "tree " treehash "\n"
+                      "author " author "\n"
+                      "committer " committer "\n"
+                      "timestamp " timestamp "\n"
+                      "message " message)
+          ]
+      (create-object parent-dir root comstr)
+      )
+    (let [comstr (str "parent " parenthash "\n"
+                      "tree " treehash "\n"
+                      "author " author "\n"
+                      "committer " committer "\n"
+                      "timestamp " timestamp "\n"
+                      "message " message)
+          ]
+      (create-object parent-dir root comstr))))
+
+(defn make-commit
+  [parent-dir root message phash]
+  (let [committree (hash-dir parent-dir root parent-dir)
+        treehash (nth (line-read committree) 2)
+        ]
+    (let [commithash (make-commit-obj
+                       parent-dir root phash treehash
+                       "John" "John" (tc/to-long (time/now))
+                       message)
+          ]
+      commithash)))
