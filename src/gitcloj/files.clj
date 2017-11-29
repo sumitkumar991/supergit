@@ -11,9 +11,11 @@
   from root dir path"
   [parent-dir fpath]
   (let [fhash (rd/indexed-hash parent-dir fpath)]
+    ;(println fhash)
+    ;(println (hp/sha1-str (hp/compress (slurp (str parent-dir fpath)))))
     (if (nil? fhash)
       nil
-      (=
+      (not=
         (hp/sha1-str (hp/compress (slurp (str parent-dir fpath))))
         fhash))))
 
@@ -40,7 +42,7 @@
   (try
     (if (indexed? parent-dir fpath)
       (if (io/delete-file (str parent-dir fpath))
-          (do (println "'" fpath "'" "deleted from working copy")
+          (do (println "'"fpath"'" "deleted from working copy")
               (remove-from-index parent-dir fpath)
               (println "file removed from index"))
           (println fpath " file remove failed"))

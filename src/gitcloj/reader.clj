@@ -94,4 +94,9 @@
 (defn indexed-hash
   "Returns the hash of indexed file from snapshot"
   [parent-dir rpath]
-  (get-in (get-curr-snapshot parent-dir) [:snapshot rpath]))
+  (get (get-curr-snapshot parent-dir) rpath))
+
+(defn get-branch-name
+  [parent-dir]
+  (let [bpath (:ref (get-head parent-dir))]
+    (subs bpath (inc (cstr/last-index-of bpath "/")))))

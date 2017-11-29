@@ -7,7 +7,9 @@
             [gitcloj.objects :as obj]
             [clj-time.core :as tm]
             [gitcloj.branch :as br]
-            [gitcloj.constants :as cns]))
+            [gitcloj.constants :as cns]
+            [gitcloj.status :as sts]
+            [gitcloj.files :as fls]))
 
 (def ^:const root cns/c-root)
 (def ^:const APP_NAME "clogit")
@@ -18,15 +20,10 @@
       (io/make-parents (str par "branches/nil"))
       (io/make-parents (str par "refs/nil"))
       (io/make-parents (str par "refs/heads/nil"))
-      ;(io/make-parents (str par "branches/master/nil"))
       (io/make-parents (str par "logs/master"))
       (io/make-parents (str par "objects/nil"))
       (spit (str par "index") "{}")                           ;index for versioned files
       (spit (str par "Head") {:ref "refs/heads/master"})
-
-      ;(spit (str par "branches/Index")
-      ;      {"master" {}})
-      ;(spit (str par "branches/master/index") "{}")
       )))
 
 
@@ -93,7 +90,6 @@
     (do (br/create-new-branch parent-dir b)
         (println "Created new branch '" b "'"))))
 
-;todo: delete tracked files on branch checkout
 (defn checkout
   "Checkout/create old/new branch or a commit"
   ([parent-dir b]
@@ -103,7 +99,7 @@
        (if (nil? c-hash)
          (println b " does not match any file(s) known to " APP_NAME)
          (let [treehash (rd/get-commit-tree parent-dir c-hash)]
-           (br/delete-tracked parent-dir)
+           (dorun (br/delete-tracked parent-dir))
            (obj/write-file-tree parent-dir parent-dir treehash)
            (spit (rd/get-index-path parent-dir)
                  {:snapshot (br/build-snapshot parent-dir treehash)})
@@ -114,7 +110,7 @@
        (if (nil? treehash)
          (println b " does not match any file(s) known to " APP_NAME))
        (do
-         (br/delete-tracked parent-dir)
+         (dorun (br/delete-tracked parent-dir))
          (obj/write-file-tree parent-dir parent-dir treehash)
          (spit (rd/get-index-path parent-dir)
                {:snapshot (br/build-snapshot parent-dir root treehash)})
@@ -127,14 +123,42 @@
     (case op
       "-b" (if (br/branch? parent-dir b)
              (println "A branch named '" b "' already exists.")
-             (do (br/create-new-branch parent-dir b)
+             (do (dorun (br/delete-tracked parent-dir))
                  (br/switch-branch parent-dir b)
                  (println "Switched to a new branch '" b "'")))
       (println "Not a valid " APP_NAME))))
 
+(defn status
+  "Shows the status(untracked, staged, deleted, modified) file statuses"
+  [parent-dir]
+  (println "On branch " (rd/get-branch-name parent-dir))
+  (let [unt (sts/untracked parent-dir)]
+    (if (empty? unt)
+      nil
+      (do (println "Untracked files: ")
+          (println "  " (cstr/join "\n   " unt)))))
+  (let [del (sts/deleted-files parent-dir)]
+    (if (empty? del)
+      nil
+      (do (println "deleted: ")
+          (println "  " (cstr/join "\n   " del)))))
+  (let [nstaged (sts/not-staged-for-commit parent-dir)]
+    (if (empty? nstaged)
+      nil
+      (do (println "modified files not staged for commit: ")
+          (println "  " (cstr/join "\n   " nstaged)))))
+  (let [staged (sts/staged-for-commit parent-dir)]
+    (if (empty? staged)
+      nil
+      (do (println "files staged for commit: ")
+          (println "  " (cstr/join "\n   " staged))))))
+
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
+  ;(dorun
+  ;  (br/delete-tracked "/home/sumit/Documents/Untitled Folder/demo/"))
+  ;(io/delete-file "/home/sumit/Documents/Untitled Folder/demo/file1")
   ;(init "/home/sumit/Documents/Untitled Folder/demo/")
   ;(add "/home/sumit/Documents/Untitled Folder/demo/" "folder1/")
   ;(add "/home/sumit/Documents/Untitled Folder/demo/" "check/")
@@ -146,5 +170,6 @@
   ;                       (rd/get-updated-snapshot "/home/sumit/Documents/Untitled Folder/demo/" root)))
   ;
   ;(obj/write-file-tree "/home/sumit/Documents/Untitled Folder/demo/" root "/home/sumit/Documents/Untitled Folder/demo/" "05172486ce931e6f36f9138786e3f9bd20b900f9")
-  (checkout "/home/sumit/Documents/Untitled Folder/demo/" "master")
+  ;(checkout "/home/sumit/Documents/Untitled Folder/demo/" "master")
+  (status "/home/sumit/Documents/Untitled Folder/demo/")
   (println "Hello, World!"))

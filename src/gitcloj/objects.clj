@@ -83,7 +83,6 @@
           blobs (filter #(= (second %) "blob") parlines)
           ]
       (doseq [tree trees]
-        (println curr-dir)
         (let [cdir (str curr-dir (nth tree 3) "/nil")]
           (io/make-parents cdir)))
       (doseq [tree trees]

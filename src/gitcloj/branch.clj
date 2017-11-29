@@ -11,7 +11,6 @@
 
 (defn branch?
   [parent-dir p]
-  (println (list-branches parent-dir))
   (if (some #(= p %) (list-branches parent-dir))
     true
     false))
@@ -63,7 +62,6 @@
         (try
           (io/delete-file (io/file (str parent-dir file)) false)
           (catch Exception e
-            (println e)
             nil))
         (loop [p file]
           (if (cstr/includes? p "/")
@@ -71,21 +69,8 @@
               (try
                 (io/delete-file (io/file (str parent-dir (subs file 0 (cstr/last-index-of file "/")))) false)
                 (catch Exception e
-                  (println e)
                   nil))
               (recur (subs file 0 (cstr/last-index-of file "/"))))
             nil)
           )
         ))))
-
-
-;(defn delete-tracked
-;  "Delete the files & dirs tracked under index"
-;  [path]
-;  (do
-;    (try
-;      (io/delete-file (io/file path))
-;      (catch Exception e
-;        nil))
-;    (io/delete-file (io/file (subs path 0 (cstr/last-index-of path "/")))))
-;    )
