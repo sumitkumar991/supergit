@@ -15,7 +15,11 @@
 
 (defn get-head
   [parent]
-  (read-string (get-file-content (str parent root "Head"))))
+  (let [data (get-file-content (str parent root "Head"))]
+    (try
+      (read-string data)
+      (catch Exception e
+        data))))
 
 (defn get-head-path
   [parent-dir]
@@ -44,7 +48,6 @@
   (try
     (slurp (str parent-dir root "refs/heads/" bname))
     (catch Exception e
-      (println e)
       nil)))
 
 (defn get-index
@@ -85,7 +88,10 @@
 
 (defn get-commit-tree
   [parent-dir commithash]
-  (get (read-commit-map parent-dir commithash) "tree"))
+  (try
+    (get (read-commit-map parent-dir commithash) "tree")
+    (catch Exception e
+      nil)))
 
 (defn get-index-path
   [parent-dir]
@@ -94,9 +100,12 @@
 (defn indexed-hash
   "Returns the hash of indexed file from snapshot"
   [parent-dir rpath]
-  (get (get-curr-snapshot parent-dir) rpath))
+  (get-in (get-curr-snapshot parent-dir) [rpath :hash]))
 
 (defn get-branch-name
   [parent-dir]
-  (let [bpath (:ref (get-head parent-dir))]
-    (subs bpath (inc (cstr/last-index-of bpath "/")))))
+  (let [head (get-head parent-dir)]
+    (if (coll? head)
+      (let [bpath (:ref head)]
+        (subs bpath (inc (cstr/last-index-of bpath "/"))))
+      head)))
