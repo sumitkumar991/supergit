@@ -1,32 +1,48 @@
-# gitcloj
+# Supergit
 
-FIXME: description
+Git implemented in Clojure. Started this project to try & understand how git does the magic underneath.
 
 ## Installation
 
-Download from http://example.com/FIXME.
+Clone the repo & start a repl session with leiningen in project root.
+ 
+ `lein repl`
+ 
+It's still a work in progress.
 
 ## Usage
 
-FIXME: explanation
+The commands are not available through a terminal, so require a little extra work.
 
-    $ java -jar gitcloj-0.1.0-standalone.jar [args]
-
-## Options
-
-FIXME: listing of options this app accepts.
+Copy the path of your working copy
 
 ## Examples
 
-...
+In repl :
 
-### Bugs
+`(init "path/to/working_copy")` this will initialize 
+###### .clogit
+directory in your project root.
 
-...
+`(status "path/to/working_copy")`
 
-### Any Other Sections
-### That You Think
-### Might be Useful
+`(add "path/to/working_copy" "src/file")`
+
+`(commit "path/to/working_copy" "commit msg")`
+
+`(checkout "path/to/working_copy" "-b" "newbranch")`
+to create a new branch & switch on it.
+
+`(checkout "path/to/working_copy" "branch_name")`
+to switch branches.
+
+`(branch "path/to/working_copy" "branch_name")`
+to create a new branch.
+
+`(reset "path/to/working_copy")`
+
+That's all the supported actions until now.
+All files inside .clogit are saved as plain text, makes it easy to see what changed inside.
 
 ## License
 
