@@ -32,7 +32,6 @@
     (let [allfiles (remove
                      #(= (.getName (io/file %)) ".clogit")
                      (seq (.listFiles (io/file dirpath)))) ]
-      ;(println allfiles)
       (if (empty? allfiles)
         nil
         (let [hcontent (reduce
@@ -42,8 +41,6 @@
                          (filter some? (map #(hash-dir parent-dir % staged) allfiles)))
               hashname (hp/sha1-str hcontent)
               ]
-          ;(println hcontent)
-          ;(println hashname)
           (if (= hcontent "")
             nil
             (do
