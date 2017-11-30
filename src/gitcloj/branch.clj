@@ -29,11 +29,16 @@
            ]
        (if (nil? trees)
          (apply merge (map #(hash-map (str (cstr/replace-first curr-dir parent-dir "")
-                                           (nth % 3)) (nth % 2)) blobs))
+                                           (nth % 3))
+                                      {:mode (nth % 0)
+                                       :hash (nth % 2)}) blobs))
          (merge
            (apply merge (map #(hash-map (str (cstr/replace-first curr-dir parent-dir "")
-                                             (nth % 3)) (nth % 2)) blobs))
-           (apply merge (map #(build-snapshot parent-dir (str (cstr/replace-first curr-dir parent-dir "")
+                                             (nth % 3))
+                                        {:mode (nth % 0)
+                                         :hash (nth % 2)}) blobs))
+           (apply merge (map #(build-snapshot parent-dir
+                                              (str (cstr/replace-first curr-dir parent-dir "")
                                                               (nth % 3) "/") (nth % 2))
                              trees))))
        ))))
