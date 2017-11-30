@@ -168,31 +168,8 @@
           (println "  " (cstr/join "\n   " staged))))
     (if (or unt del nstaged staged)
       nil
-      "Nothing to commit, Working directory clean")
-    ))
-(def p "/home/sumit/Documents/Untitled Folder/test1/")
+      "Nothing to commit, Working directory clean")))
+
 (defn -main
   "I don't do a whole lot ... yet."
-  [& args]
-
-  ;(dorun
-  ;  (br/delete-tracked "/home/sumit/Documents/Untitled Folder/demo/"))
-  ;(io/delete-file "/home/sumit/Documents/Untitled Folder/demo/file1")
-  ;(init p)
-  ;(add "/home/sumit/Documents/Untitled Folder/demo/" "folder1/")
-  ;(add "/home/sumit/Documents/Untitled Folder/demo/" "check/")
-  ;(add p "file1")
-  ;(add p "folder1")
-  ;(reset p)
-  ;(println (commit "/home/sumit/Documents/Untitled Folder/demo/" "checkout-test"))
-  ;(println (obj/hash-dir "/home/sumit/Documents/Untitled Folder/demo/"
-  ;                       "/home/sumit/Documents/Untitled Folder/demo/"
-  ;                       (rd/get-updated-snapshot "/home/sumit/Documents/Untitled Folder/demo/" root)))
-  ;
-  ;(obj/write-file-tree "/home/sumit/Documents/Untitled Folder/demo/" root "/home/sumit/Documents/Untitled Folder/demo/" "05172486ce931e6f36f9138786e3f9bd20b900f9")
-  ;(checkout "/home/sumit/Documents/Untitled Folder/demo/" "master")
-  ;(status p)
-  ;(checkout p "9590d09274fdba22d7331a4934d3e57b0c5931ed")
-  (commit p "second")
-
-  (println "Hello, World!"))
+  [& args])
