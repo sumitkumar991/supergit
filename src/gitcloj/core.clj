@@ -38,32 +38,41 @@
 (defn add-helper
   "Adds the file to index & creates the object associated"
   [parent-dir fpath]
-  (let [index (rd/get-index parent-dir)]
-    (let [fcontent (slurp fpath)
-          filehash (obj/create-object parent-dir fcontent)
-          ]
-      (let [stage_ob {(hp/get-relative-path parent-dir fpath)
-                      (hp/stage-file-ob 100644 filehash)}
+  (try
+    (let [index (rd/get-index parent-dir)]
+      (let [fcontent (slurp fpath)
+            filehash (obj/create-object parent-dir fcontent)
             ]
-        (spit (str parent-dir root "index")
-              (update index :staged merge stage_ob)))
-      )))
+        (let [stage_ob {(hp/get-relative-path parent-dir fpath)
+                        (hp/stage-file-ob 100644 filehash)}
+              ]
+          (spit (str parent-dir root "index")
+                (update index :staged merge stage_ob)))
+        ))
+    (catch Exception e
+      (println "Path specified does not match any file..")))
+
+  )
 
 (defn add
   [parent-dir fpath]
   (let [index (rd/get-index parent-dir)]
     (cond
       (not= fpath ".") (if (.isDirectory (io/file (str parent-dir fpath)))
-                         (doseq [filepath (hp/read-files-recursively (str parent-dir fpath))]
+                         (doseq [filepath (hp/read-files-recursively
+                                            (str parent-dir (if (cstr/ends-with? fpath "/")
+                                                              fpath
+                                                              (str fpath "/"))))
+                                 ]
                            (add-helper parent-dir filepath))
                          (add-helper parent-dir (str parent-dir fpath)))
       :else (doseq [filepath (hp/read-files-recursively parent-dir)]
               (add-helper parent-dir filepath)))))
 
 (defn reset
-  [parent-dir root]
+  "Clears the staged area files"
+  [parent-dir]
   (let [indexmap (rd/get-index parent-dir)]
-    (println indexmap)
     (spit
       (rd/get-index-path parent-dir) (update indexmap :staged (fn [x] nil)))))
 
@@ -78,7 +87,10 @@
             commithash (obj/make-commit parent-dir message parenthash up-snap)
             branchpath (rd/get-head-ref parent-dir)
             ]
-        (spit (str parent-dir root branchpath) commithash)
+        ;(println branchpath parenthash)
+        (if (nil? branchpath)
+          (spit (rd/get-index-path parent-dir) commithash)
+          (spit (str parent-dir branchpath) commithash))
         (spit (rd/get-index-path parent-dir) {:snapshot up-snap})
         commithash))
     ))
@@ -113,7 +125,7 @@
          (dorun (br/delete-tracked parent-dir))
          (obj/write-file-tree parent-dir parent-dir treehash)
          (spit (rd/get-index-path parent-dir)
-               {:snapshot (br/build-snapshot parent-dir root treehash)})
+               {:snapshot (br/build-snapshot parent-dir treehash)})
          (spit (rd/get-head-path parent-dir) b)
          (println (str "Checked out commit " b "\n" "Detached Head\n"
                        "Create new branch with [checkout -b b_name]"
@@ -123,9 +135,10 @@
     (case op
       "-b" (if (br/branch? parent-dir b)
              (println "A branch named '" b "' already exists.")
-             (do (dorun (br/delete-tracked parent-dir))
-                 (br/switch-branch parent-dir b)
-                 (println "Switched to a new branch '" b "'")))
+             (dosync
+               (br/create-new-branch parent-dir b)
+               (br/switch-branch parent-dir b)
+               (println "Switched to a new branch '" b "'")))
       (println "Not a valid " APP_NAME))))
 
 (defn status
@@ -157,18 +170,20 @@
       nil
       "Nothing to commit, Working directory clean")
     ))
-
+(def p "/home/sumit/Documents/Untitled Folder/test1/")
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
+
   ;(dorun
   ;  (br/delete-tracked "/home/sumit/Documents/Untitled Folder/demo/"))
   ;(io/delete-file "/home/sumit/Documents/Untitled Folder/demo/file1")
-  ;(init "/home/sumit/Documents/Untitled Folder/demo/")
+  ;(init p)
   ;(add "/home/sumit/Documents/Untitled Folder/demo/" "folder1/")
   ;(add "/home/sumit/Documents/Untitled Folder/demo/" "check/")
-  ;(add "/home/sumit/Documents/Untitled Folder/demo/" "file1")
-  ;(reset "/home/sumit/Documents/Untitled Folder/demo/")
+  ;(add p "file1")
+  ;(add p "folder1")
+  ;(reset p)
   ;(println (commit "/home/sumit/Documents/Untitled Folder/demo/" "checkout-test"))
   ;(println (obj/hash-dir "/home/sumit/Documents/Untitled Folder/demo/"
   ;                       "/home/sumit/Documents/Untitled Folder/demo/"
@@ -176,5 +191,8 @@
   ;
   ;(obj/write-file-tree "/home/sumit/Documents/Untitled Folder/demo/" root "/home/sumit/Documents/Untitled Folder/demo/" "05172486ce931e6f36f9138786e3f9bd20b900f9")
   ;(checkout "/home/sumit/Documents/Untitled Folder/demo/" "master")
-  (status "/home/sumit/Documents/Untitled Folder/demo/")
+  ;(status p)
+  ;(checkout p "9590d09274fdba22d7331a4934d3e57b0c5931ed")
+  (commit p "second")
+
   (println "Hello, World!"))
