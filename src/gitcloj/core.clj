@@ -132,26 +132,31 @@
   "Shows the status(untracked, staged, deleted, modified) file statuses"
   [parent-dir]
   (println "On branch " (rd/get-branch-name parent-dir))
-  (let [unt (sts/untracked parent-dir)]
+  (let [unt (sts/untracked parent-dir)
+        del (sts/deleted-files parent-dir)
+        nstaged (sts/not-staged-for-commit parent-dir)
+        staged (sts/staged-for-commit parent-dir)
+        ]
     (if (empty? unt)
       nil
       (do (println "Untracked files: ")
-          (println "  " (cstr/join "\n   " unt)))))
-  (let [del (sts/deleted-files parent-dir)]
+          (println "  " (cstr/join "\n   " unt))))
     (if (empty? del)
       nil
       (do (println "deleted: ")
-          (println "  " (cstr/join "\n   " del)))))
-  (let [nstaged (sts/not-staged-for-commit parent-dir)]
+          (println "  " (cstr/join "\n   " del))))
     (if (empty? nstaged)
       nil
       (do (println "modified files not staged for commit: ")
-          (println "  " (cstr/join "\n   " nstaged)))))
-  (let [staged (sts/staged-for-commit parent-dir)]
+          (println "  " (cstr/join "\n   " nstaged))))
     (if (empty? staged)
       nil
       (do (println "files staged for commit: ")
-          (println "  " (cstr/join "\n   " staged))))))
+          (println "  " (cstr/join "\n   " staged))))
+    (if (or unt del nstaged staged)
+      nil
+      "Nothing to commit, Working directory clean")
+    ))
 
 (defn -main
   "I don't do a whole lot ... yet."
