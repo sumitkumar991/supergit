@@ -107,7 +107,7 @@
 (defn checkout
   "Checkout/create old/new branch or a commit"
   ([parent-dir b]
-   ;(br/delete-tracked parent-dir)
+    ;(br/delete-tracked parent-dir)
    (if (br/branch? parent-dir b)
      (let [c-hash (rd/get-branch-hash parent-dir b)]
        (if (nil? c-hash)
@@ -134,14 +134,14 @@
                        "to save any changes in the detached state")))
        )))
   ([parent-dir op b]
-    (case op
-      "-b" (if (br/branch? parent-dir b)
-             (println "A branch named '" b "' already exists.")
-             (do
-               (br/create-new-branch parent-dir b)
-               (br/switch-branch parent-dir b)
-               (println "Switched to a new branch '" b "'")))
-      (println "Not a valid " APP_NAME))))
+   (case op
+     "-b" (if (br/branch? parent-dir b)
+            (println "A branch named '" b "' already exists.")
+            (do
+              (br/create-new-branch parent-dir b)
+              (br/switch-branch parent-dir b)
+              (println "Switched to a new branch '" b "'")))
+     (println "Not a valid " APP_NAME))))
 
 (defn status
   "Shows the status(untracked, staged, deleted, modified) file statuses"
@@ -177,7 +177,6 @@
   [parent-dir]
   (lg/print-log parent-dir))
 
-(def p "/home/sumit/Documents/Untitled Folder/demo2/")
 (defn -main
   "I don't do a whole lot ... yet."
   [& args])
