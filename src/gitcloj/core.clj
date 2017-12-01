@@ -10,7 +10,7 @@
             [gitcloj.constants :as cns]
             [gitcloj.status :as sts]
             [gitcloj.files :as fls]
-            [gitcloj.logger :as log]))
+            [gitcloj.logger :as lg]))
 
 (def ^:const root cns/c-root)
 (def ^:const APP_NAME "clogit")
@@ -21,7 +21,7 @@
       (io/make-parents (str par "branches/nil"))
       (io/make-parents (str par "refs/nil"))
       (io/make-parents (str par "refs/heads/nil"))
-      (io/make-parents (str par "logs/master"))
+      (io/make-parents (str par "logs/refs/heads/nil"))
       (io/make-parents (str par "objects/nil"))
       (spit (str par "index") "{}")                           ;index for versioned files
       (spit (str par "Head") {:ref "refs/heads/master"})
@@ -93,7 +93,7 @@
           (spit (str parent-dir root branchpath) commithash))
         (spit (rd/get-index-path parent-dir) {:snapshot up-snap})
         ;write log entry after commit
-        (log/write-log parent-dir commithash)
+        (lg/write-log parent-dir commithash)
         commithash))
     ))
 
@@ -171,8 +171,13 @@
     (if (or unt del nstaged staged)
       nil
       "Nothing to commit, Working directory clean")))
-(def p "/home/sumit/Documents/Untitled Folder/test1/")
+
+(defn log
+  "Prints out the commit log"
+  [parent-dir]
+  (lg/print-log parent-dir))
+
+(def p "/home/sumit/Documents/Untitled Folder/demo2/")
 (defn -main
   "I don't do a whole lot ... yet."
-  [& args]
-  (commit p "added file2"))
+  [& args])
