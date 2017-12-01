@@ -9,7 +9,8 @@
             [gitcloj.branch :as br]
             [gitcloj.constants :as cns]
             [gitcloj.status :as sts]
-            [gitcloj.files :as fls]))
+            [gitcloj.files :as fls]
+            [gitcloj.logger :as log]))
 
 (def ^:const root cns/c-root)
 (def ^:const APP_NAME "clogit")
@@ -87,11 +88,12 @@
             commithash (obj/make-commit parent-dir message parenthash up-snap)
             branchpath (rd/get-head-ref parent-dir)
             ]
-        ;(println branchpath parenthash)
         (if (nil? branchpath)
           (spit (rd/get-index-path parent-dir) commithash)
-          (spit (str parent-dir branchpath) commithash))
+          (spit (str parent-dir root branchpath) commithash))
         (spit (rd/get-index-path parent-dir) {:snapshot up-snap})
+        ;write log entry after commit
+        (log/write-log parent-dir commithash)
         commithash))
     ))
 
@@ -135,7 +137,7 @@
     (case op
       "-b" (if (br/branch? parent-dir b)
              (println "A branch named '" b "' already exists.")
-             (dosync
+             (do
                (br/create-new-branch parent-dir b)
                (br/switch-branch parent-dir b)
                (println "Switched to a new branch '" b "'")))
@@ -169,7 +171,8 @@
     (if (or unt del nstaged staged)
       nil
       "Nothing to commit, Working directory clean")))
-
+(def p "/home/sumit/Documents/Untitled Folder/test1/")
 (defn -main
   "I don't do a whole lot ... yet."
-  [& args])
+  [& args]
+  (commit p "added file2"))
